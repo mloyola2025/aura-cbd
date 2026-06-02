@@ -26,7 +26,9 @@ const cbdProducts = [
     oldPrice: "S/ 250",
     image: "/relax.png",
     accent: "#ef7d1a",
-    summary: "Apoyo para calma diaria, descanso y bienestar nocturno.",
+    tagline: "Ideal para quienes comienzan con CBD.",
+    summary:
+      "Apoyo para promover la calma, el descanso y el bienestar diario.",
     duration: "Rinde 1 a 1.5 meses",
   },
   {
@@ -37,7 +39,9 @@ const cbdProducts = [
     oldPrice: "S/ 350",
     image: "/focus.png",
     accent: "#2f8a35",
-    summary: "Equilibrio, enfoque y recuperación cotidiana.",
+    tagline: "Para quienes buscan un mayor nivel de apoyo.",
+    summary:
+      "Concentración intermedia diseñada para acompañar el bienestar físico, mental y emocional.",
     duration: "Rinde 2 a 3 meses",
   },
   {
@@ -48,7 +52,9 @@ const cbdProducts = [
     oldPrice: "S/ 450",
     image: "/plus.png",
     accent: "#0076bf",
-    summary: "Alta concentración para mayor soporte con menos gotas.",
+    tagline: "Para quienes buscan la máxima concentración.",
+    summary:
+      "Mayor cantidad de CBD por gota para un soporte más intenso y duradero.",
     duration: "Rinde 3 a 4 meses",
   },
 ];
@@ -62,7 +68,7 @@ const petProducts = [
     oldPrice: "S/ 180",
     image: "/pets5.png",
     accent: "#3b8a35",
-    summary: "Fórmula para perros y gatos en rutinas de calma y bienestar.",
+    summary: "Ideal para promover la calma, el bienestar y el confort diario.",
     backdrop: "/pets-small-bg.png",
   },
   {
@@ -70,10 +76,11 @@ const petProducts = [
     concentration: "10% CBD",
     mg: "1000 mg",
     price: "S/ 140",
-    oldPrice: "",
+    oldPrice: "S/ 210",
     image: "/pets10.png",
     accent: "#b71f3b",
-    summary: "Mayor concentración para asesorías personalizadas de mascotas.",
+    summary:
+      "Para mascotas que requieren un apoyo más amplio para su bienestar físico, movilidad y calidad de vida.",
     backdrop: "/pets-large-bg.png",
   },
 ];
@@ -82,8 +89,9 @@ const categories = [
   {
     id: "cbd",
     href: "/catalogo?categoria=cbd",
-    title: "Aceites medicinales CBD",
-    description: "Relax, Focus y Plus para bienestar diario.",
+    title: "Aceites CBD para tu bienestar",
+    description:
+      "Relax, Focus y Plus para acompañar el bienestar físico, mental y emocional.",
     icon: HeartPulse,
     backdrop: "/home-products.png",
     position: "right center",
@@ -91,8 +99,9 @@ const categories = [
   {
     id: "mascotas",
     href: "/catalogo?categoria=mascotas",
-    title: "Mascotas",
-    description: "CBD para perros y gatos, con asesoría guiada.",
+    title: "Aceites CBD para mascotas",
+    description:
+      "Formulaciones para perros y gatos orientadas a su bienestar y calidad de vida.",
     icon: PawPrint,
     backdrop: "/pets-small-bg.png",
     position: "45% center",
@@ -280,8 +289,8 @@ export default async function CatalogPage({
           <CategorySection
             id="aceites-medicinales-cbd"
             eyebrow="Categoría 01"
-            title="Aceites medicinales CBD"
-            description="Concentraciones para descanso, calma, enfoque y recuperación diaria."
+            title="Aceites CBD para tu bienestar"
+            description="Relax, Focus y Plus para acompañar el bienestar físico, mental y emocional."
           >
             <div className="grid gap-5 lg:grid-cols-3">
               {cbdProducts.map((product) => (
@@ -295,8 +304,8 @@ export default async function CatalogPage({
           <CategorySection
             id="mascotas"
             eyebrow="Categoría 02"
-            title="Mascotas"
-            description="Fórmulas CBD para perros y gatos, con compra guiada según tamaño y necesidad."
+            title="Aceites CBD para mascotas"
+            description="Formulaciones para perros y gatos orientadas a su bienestar y calidad de vida."
           >
             <div className="grid gap-5 lg:grid-cols-2">
               {petProducts.map((product) => (
@@ -417,6 +426,7 @@ type Product = {
   oldPrice: string;
   image: string;
   accent: string;
+  tagline?: string;
   summary: string;
   duration?: string;
   backdrop?: string;
@@ -481,7 +491,14 @@ function ProductCard({ product, pet = false }: { product: Product; pet?: boolean
             <div className="text-lg font-bold">{product.price}</div>
           </div>
         </div>
-        <p className="mt-4 leading-7 text-[#44474d]">{product.summary}</p>
+        {product.tagline ? (
+          <p className="mt-4 text-sm font-semibold leading-6 text-[#39475f]">
+            {product.tagline}
+          </p>
+        ) : null}
+        <p className={`${product.tagline ? "mt-2" : "mt-4"} leading-7 text-[#44474d]`}>
+          {product.summary}
+        </p>
         <div className="mt-5 flex flex-wrap gap-2">
           {[product.concentration, "0% THC"].map((item) => (
             <span key={item} className="rounded-full bg-[#eff4ff] px-3 py-1.5 text-xs font-semibold text-[#39475f]">
