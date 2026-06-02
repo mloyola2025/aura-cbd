@@ -65,7 +65,7 @@ const petProducts = [
     concentration: "5% CBD",
     mg: "500 mg",
     price: "S/ 100",
-    oldPrice: "S/ 180",
+    oldPrice: "S/ 140",
     image: "/pets5.png",
     accent: "#3b8a35",
     summary: "Ideal para promover la calma, el bienestar y el confort diario.",
